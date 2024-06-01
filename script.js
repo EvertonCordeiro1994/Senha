@@ -12,27 +12,23 @@ const iconeCaractereEspecial = document.querySelector("#icone04");
 botao.addEventListener("click", function () {
     senha.type = (senha.type == "password") ? "text" : "password";
 
-	if (senha.type == "password") {
-        icone.classList.remove(
-			'fa-eye-slash');
-        icone.classList.add(
-			'fa-eye');
-    } else {
-        icone.classList.remove(
-			'fa-eye');
-        icone.classList.add(
-			'fa-eye-slash');
-    }
+	(senha.type == "password") ? icone.classList.replace('fa-eye-slash', 'fa-eye') : icone.classList.replace('fa-eye','fa-eye-slash')
+
 });
-
-// fa-check
-
 
 senha.addEventListener("input", function(){
 	const senhaAtual = this.value;
-(/\d/.test(senhaAtual)) ? iconeNumero.classList.toggle('fa-xmark') :
-iconeNumero.classList.toggle('fa-check');
+	
+	(senhaAtual.length >= 8) ? iconeNumeroCaracteres.classList.replace('fa-xmark', 'fa-check') : iconeNumeroCaracteres.classList.replace('fa-check','fa-xmark'); 
+	
+	(/[A-Z]/.test(senhaAtual) == true) ? iconeMaiuscula.classList.replace('fa-xmark', 'fa-check') : iconeMaiuscula.classList.replace('fa-check','fa-xmark'); 
+	
+	(/[a-b]/.test(senhaAtual) == true) ? iconeMinuscula.classList.replace('fa-xmark', 'fa-check') : iconeMinuscula.classList.replace('fa-check','fa-xmark');
 
+	(/\d/.test(senhaAtual) == true) ? iconeNumero.classList.replace('fa-xmark', 'fa-check') : iconeNumero.classList.replace('fa-check','fa-xmark'); 
+		 
+	
+	(/[!@#$%^&*(),.?":{}|<>]/.test(senhaAtual) == true) ? iconeCaractereEspecial.classList.replace('fa-xmark', 'fa-check') : iconeCaractereEspecial.classList.replace('fa-check','fa-xmark');
 	
 	console.log(senhaAtual);	
 });
